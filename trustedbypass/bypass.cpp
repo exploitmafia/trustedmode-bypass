@@ -21,7 +21,6 @@ LPSTR WINAPI __GetCommandLineA() {
 		return fpGCLA();
 	char m_szCmdLine[1024];
 	SetConsoleColor(15);
-	printf("[+] Trusted Check - (Bypassed)\n");
 	sprintf_s(m_szCmdLine, sizeof(m_szCmdLine), "%s -allow_third_party_software", fpGCLA());
 	return m_szCmdLine;
 }
@@ -29,7 +28,7 @@ HMODULE WINAPI __LoadLibaryA(const char* m_szModule) {
 	if (!GetModuleHandleA("serverbrowser.dll")) // Indicator for whether everything has loaded.
 		return fpLLA(m_szModule);
 	SetConsoleColor(14);
-	printf("[+] Library Injected: %s\n", m_szModule);
+	printf("[+] LoadLibrary Called: %s\n", m_szModule);
 	return fpLLA(m_szModule);
 }
 
